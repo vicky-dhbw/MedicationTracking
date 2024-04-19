@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UYBdgsnpkaQT0YVG6JI0pnxk7kAHnZhNFVR6AVhBehs=",
+  "Source": "MedicationTracking",
+  "BasePath": "_content/MedicationTracking",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

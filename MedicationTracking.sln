@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicationTracking", "MedicationTracking\MedicationTracking.csproj", "{01E45AAD-54D6-49AB-B61A-08C1DDCE66B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{7ABE290B-96C6-4800-8849-4C438E0A7355}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01E45AAD-54D6-49AB-B61A-08C1DDCE66B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E45AAD-54D6-49AB-B61A-08C1DDCE66B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E45AAD-54D6-49AB-B61A-08C1DDCE66B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E45AAD-54D6-49AB-B61A-08C1DDCE66B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABE290B-96C6-4800-8849-4C438E0A7355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABE290B-96C6-4800-8849-4C438E0A7355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABE290B-96C6-4800-8849-4C438E0A7355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABE290B-96C6-4800-8849-4C438E0A7355}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

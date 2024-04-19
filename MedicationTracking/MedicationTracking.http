@@ -1,0 +1,6 @@
+@MedicationTracking_HostAddress = http://localhost:5215
+
+GET {{MedicationTracking_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
