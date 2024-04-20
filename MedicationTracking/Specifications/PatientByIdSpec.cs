@@ -9,5 +9,4 @@ public sealed class PatientByIdSpec : Specification<Patient>
     {
         Query.Where(p => p.PatientId == patientId);
     }
-    
 }

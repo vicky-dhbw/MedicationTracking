@@ -3,24 +3,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models;
 
-public class Medicine
+public class Medicine(
+    string genericName,
+    string brandName,
+    string color,
+    string form,
+    string? administrationMethod
+)
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MedicineId { get; set; }
 
     [StringLength(100)]
-    public required string GenericName { get; set; }
+    public string GenericName { get; set; } = genericName;
 
     [StringLength(100)]
-    public required string BrandName { get; set; }
+    public string BrandName { get; set; } = brandName;
 
     [StringLength(100)]
-    public required string Color { get; set; }
+    public string Color { get; set; } = color;
 
     [StringLength(100)]
-    public required string Form { get; set; }
+    public string Form { get; set; } = form;
 
     [StringLength(255)]
-    public string? AdministrationMethod { get; set; }
+    public string? AdministrationMethod { get; set; } = administrationMethod;
 }

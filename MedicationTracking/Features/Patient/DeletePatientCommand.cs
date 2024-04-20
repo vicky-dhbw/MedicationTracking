@@ -1,10 +1,9 @@
 using MediatR;
-using MedicationTracking.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.Patient;
 
-public class GetPatientByIdCommand(int patientId) : IRequest<ActionResult<PatientDtoWithId>>
+public class DeletePatientCommand(int patientId) : IRequest<ActionResult>
 {
     public int PatientId { get; } = patientId;
 }

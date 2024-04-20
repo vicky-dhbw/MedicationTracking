@@ -26,15 +26,36 @@ public class MedicationTrackingRepository(MedicationTrackingContext medicationTr
         await _medicationTrackingContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<TEntity> FirstOrDefault<TEntity>(ISpecification<TEntity> specification, CancellationToken cancellationToken = default) where TEntity : class
+    public async Task<TEntity> FirstOrDefault<TEntity>(
+        ISpecification<TEntity> specification,
+        CancellationToken cancellationToken = default
+    )
+        where TEntity : class
     {
         return (await ApplySepcification(specification).FirstOrDefaultAsync(cancellationToken))!;
-
     }
 
-    private IQueryable<TEntity> ApplySepcification<TEntity>(ISpecification<TEntity> specification) where TEntity : class
+    public void Remove<TEntity>(TEntity entity)
+        where TEntity : class
     {
-        return SpecificationEvaluator.Default.GetQuery(_medicationTrackingContext.Set<TEntity>().AsQueryable(),
-            specification);
+        _medicationTrackingContext.Set<TEntity>().Remove(entity);
+    }
+
+    public async Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(
+        ISpecification<TEntity> specification,
+        CancellationToken cancellationToken = default
+    )
+        where TEntity : class
+    {
+        return (await ApplySepcification(specification).ToListAsync(cancellationToken));
+    }
+
+    private IQueryable<TEntity> ApplySepcification<TEntity>(ISpecification<TEntity> specification)
+        where TEntity : class
+    {
+        return SpecificationEvaluator.Default.GetQuery(
+            _medicationTrackingContext.Set<TEntity>().AsQueryable(),
+            specification
+        );
     }
 }

@@ -20,7 +20,7 @@ public class PatientController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{patientId}")]
-    public async Task<ActionResult<PatientDto>> GetPatientAsync(
+    public async Task<ActionResult<PatientDtoWithId>> GetPatientAsync(
         [FromRoute] int patientId,
         CancellationToken cancellationToken
     )
@@ -31,20 +31,20 @@ public class PatientController(IMediator mediator) : ControllerBase
     [HttpPut]
     [Route("UpdatePatientInfo")]
     public async Task<ActionResult<PatientDto>> UpdatePatientInfoAsync(
-        [FromBody] PatientDto patient,
+        [FromBody] PatientDtoWithId patient,
         CancellationToken cancellationToken
     )
     {
-        throw new NotImplementedException();
+        return await _mediator.Send(new UpdatePatientInfoCommand(patient), cancellationToken);
     }
 
     [HttpDelete]
     [Route("{patientId}")]
     public async Task<ActionResult> DeletePatientAsync(
-        [FromRoute] string patientId,
+        [FromRoute] int patientId,
         CancellationToken cancellationToken
     )
     {
-        throw new NotImplementedException();
+        return await _mediator.Send(new DeletePatientCommand(patientId), cancellationToken);
     }
 }
