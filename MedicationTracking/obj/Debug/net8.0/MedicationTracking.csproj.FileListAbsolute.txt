@@ -109,3 +109,6 @@
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/MediatR.dll
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/MediatR.Contracts.dll
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/obj/Debug/net8.0/MedicationTracking.sourcelink.json
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/Ardalis.Specification.dll
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/Ardalis.Specification.EntityFrameworkCore.dll

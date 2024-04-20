@@ -1,6 +1,3 @@
 namespace MedicationTracking.Models;
 
-public class MedicineDto
-{
-    
-}
+public class MedicineDto { }

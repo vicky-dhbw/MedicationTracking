@@ -31,7 +31,7 @@ public class MedicationSchedule
     public virtual required Medicine Medicine { get; set; }
 
     [ForeignKey("PatientId")]
-    public virtual  required Patient Patient { get; set; }
+    public virtual required Patient Patient { get; set; }
 
     [ForeignKey("TimeCategoryId")]
     public virtual required TimeCategory TimeCategory { get; set; }

@@ -13,8 +13,7 @@ public class MedicationTrackingContext : DbContext
     public DbSet<MedicationEffect> MedicationEffects { get; set; }
     public DbSet<QrCode> QrCodes { get; set; }
     public DbSet<MedAdministrationLog> MedAdministrationLogs { get; set; }
-    
-    public MedicationTrackingContext(DbContextOptions options) : base(options)
-    {
-    }
+
+    public MedicationTrackingContext(DbContextOptions options)
+        : base(options) { }
 }

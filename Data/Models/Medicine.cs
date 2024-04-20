@@ -14,7 +14,7 @@ public class Medicine
 
     [StringLength(100)]
     public required string BrandName { get; set; }
-    
+
     [StringLength(100)]
     public required string Color { get; set; }
 

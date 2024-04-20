@@ -14,5 +14,4 @@ public class QrCode
 
     [ForeignKey("PatientId")]
     public virtual required Patient Patient { get; set; }
-
 }

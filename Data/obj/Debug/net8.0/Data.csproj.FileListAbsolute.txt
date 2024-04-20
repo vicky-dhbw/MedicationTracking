@@ -12,3 +12,4 @@
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/Data/obj/Debug/net8.0/ref/Data.dll
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/Data/bin/Debug/net8.0/Data.runtimeconfig.json
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/Data/obj/Debug/net8.0/Data.genruntimeconfig.cache
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/Data/obj/Debug/net8.0/Data.sourcelink.json

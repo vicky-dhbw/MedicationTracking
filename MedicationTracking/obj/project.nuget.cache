@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ixjcNK050AJNX7ZgsgPeULUFeUZE3HjpY2KKAmVYfpL+GKW9VHrktxwfwMBcEgKk/E1m9AgWWH9nFV/QZAHRpA==",
+  "dgSpecHash": "r/M0CPOjjGZm5Kg0N5629oY2lRv81C2qjNkh1jJE0duMuR3lczkKD4gSSleHKdEogCjIiJNepaEgGola9hjBQw==",
   "success": true,
   "projectFilePath": "/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/MedicationTracking.csproj",
   "expectedPackageFiles": [
+    "/Users/vickysharma/.nuget/packages/ardalis.specification/8.0.0/ardalis.specification.8.0.0.nupkg.sha512",
+    "/Users/vickysharma/.nuget/packages/ardalis.specification.entityframeworkcore/8.0.0/ardalis.specification.entityframeworkcore.8.0.0.nupkg.sha512",
     "/Users/vickysharma/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/Users/vickysharma/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/vickysharma/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",

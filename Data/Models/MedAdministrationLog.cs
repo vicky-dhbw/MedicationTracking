@@ -16,9 +16,9 @@ public class MedAdministrationLog
     public DateTime MedAdminTime { get; set; }
 
     [Required]
-    public int MedAdminStatus { get; set; } 
+    public int MedAdminStatus { get; set; }
 
-    [StringLength(1000)] 
+    [StringLength(1000)]
     public string? MedAdminNote { get; set; }
 
     [ForeignKey("ScheduleId")]

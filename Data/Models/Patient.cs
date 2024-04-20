@@ -10,17 +10,32 @@ public class Patient
     public int PatientId { get; set; }
 
     [Required, StringLength(100)]
-    public required string FirstName { get; set; }
+    public string FirstName { get; set; }
 
     [Required, StringLength(100)]
-    public required string LastName { get; set; }
+    public string LastName { get; set; }
 
     [Required]
     public DateTime DateOfBirth { get; set; }
 
     [Required, StringLength(24)]
-    public required string Gender { get; set; }
+    public string Gender { get; set; }
 
     [Required]
     public int RoomNo { get; set; }
+
+    public Patient(
+        string firstName,
+        string lastName,
+        DateTime dateOfBirth,
+        string gender,
+        int roomNo
+    )
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        DateOfBirth = dateOfBirth;
+        Gender = gender;
+        RoomNo = roomNo;
+    }
 }
