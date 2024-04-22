@@ -3,7 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models;
 
-public class MedicationSchedule(int medicineId, int patientId, int timeCategoryId, string dosage, DateTime start, DateTime end)
+public class MedicationSchedule(
+    int medicineId,
+    int patientId,
+    int timeCategoryId,
+    string dosage,
+    DateTime start,
+    DateTime end
+)
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

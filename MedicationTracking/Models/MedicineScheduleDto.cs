@@ -1,8 +1,17 @@
 namespace MedicationTracking.Models;
+
 /// <summary>
-/// 
+///
 /// </summary>
-public class MedicineScheduleDto(string genericName, string brandName, int patientId, string timeCategory, string dosage, DateTime start, DateTime end) : MedicineBase(genericName, brandName)
+public class MedicineScheduleDto(
+    string genericName,
+    string brandName,
+    int patientId,
+    string timeCategory,
+    string dosage,
+    DateTime start,
+    DateTime end
+) : MedicineBase(genericName, brandName)
 {
     /// <summary>
     /// Patient id of the medicine to which the medicine is to be given

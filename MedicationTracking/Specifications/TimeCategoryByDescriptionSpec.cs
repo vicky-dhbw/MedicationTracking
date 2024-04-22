@@ -4,7 +4,7 @@ using Data.Models;
 namespace MedicationTracking.Specifications;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public sealed class TimeCategoryByDescriptionSpec : Specification<TimeCategory>
 {

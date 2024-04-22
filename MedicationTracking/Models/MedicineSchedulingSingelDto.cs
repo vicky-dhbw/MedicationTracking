@@ -1,8 +1,17 @@
 namespace MedicationTracking.Models;
+
 /// <summary>
-/// 
+///
 /// </summary>
-public class MedicineSchedulingSingelDto(int scheduleId, int medicineId, int patientId, string timeCategoryId, string dosage, DateTime start, DateTime end)
+public class MedicineSchedulingSingelDto(
+    int scheduleId,
+    int medicineId,
+    int patientId,
+    string timeCategory,
+    string dosage,
+    DateTime start,
+    DateTime end
+)
 {
     /// <summary>
     /// Schedule id of the medication schedule
@@ -22,7 +31,7 @@ public class MedicineSchedulingSingelDto(int scheduleId, int medicineId, int pat
     /// <summary>
     /// Time at which the medicine needs to be taken
     /// </summary>
-    public string TimeCategory { get; set; } = timeCategoryId;
+    public string TimeCategory { get; set; } = timeCategory;
 
     /// <summary>
     /// Dosage of the medication

@@ -5,6 +5,7 @@ using MedicationTracking.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Controllers;
+
 /// <summary>
 /// Controller for medicine management
 /// </summary>
@@ -55,15 +56,20 @@ public class MedicineController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<MedicineDtoWithId>> GetMedicineByNameAsync([FromQuery] [Required] string genericName,
-        [FromQuery] [Required] string brandName, CancellationToken cancellationToken)
+    public async Task<ActionResult<MedicineDtoWithId>> GetMedicineByNameAsync(
+        [FromQuery] [Required] string genericName,
+        [FromQuery] [Required] string brandName,
+        CancellationToken cancellationToken
+    )
     {
-        return await _mediator.Send(new GetMedByNameCommand(new MedicineBase(genericName, brandName)),
-            cancellationToken);
+        return await _mediator.Send(
+            new GetMedByNameCommand(new MedicineBase(genericName, brandName)),
+            cancellationToken
+        );
     }
 
     /// <summary>
-    /// Update a medicine 
+    /// Update a medicine
     /// </summary>
     /// <param name="medicine"></param>
     /// <param name="cancellationToken"></param>
@@ -87,7 +93,7 @@ public class MedicineController(IMediator mediator) : ControllerBase
     [HttpDelete]
     [Route("{medicineId}")]
     public async Task<ActionResult> DeleteMedicineAsync(
-        [FromRoute][Required]  int medicineId,
+        [FromRoute] [Required] int medicineId,
         CancellationToken cancellationToken
     )
     {

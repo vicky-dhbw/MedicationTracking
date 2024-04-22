@@ -7,9 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.Medicine;
 
+/// <summary>
+///
+/// </summary>
+/// <param name="repository"></param>
 public class AddMedicationEffectHandler(IMedicationTrackingRepository repository)
     : IRequestHandler<AddMedicationEffectCommand, ActionResult<MedicationEffectResponseDto>>
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<ActionResult<MedicationEffectResponseDto>> Handle(
         AddMedicationEffectCommand request,
         CancellationToken cancellationToken

@@ -5,9 +5,19 @@ using MedicationTracking.Repository;
 
 namespace MedicationTracking.Features.Patient;
 
+/// <summary>
+///
+/// </summary>
+/// <param name="repository"></param>
 public class CreatePatientHandler(IMedicationTrackingRepository repository)
     : IRequestHandler<CreatePatientCommand, PatientDtoWithId>
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<PatientDtoWithId> Handle(
         CreatePatientCommand request,
         CancellationToken cancellationToken

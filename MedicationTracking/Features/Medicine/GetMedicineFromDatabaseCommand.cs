@@ -8,8 +8,8 @@ namespace MedicationTracking.Features.Medicine;
 ///
 /// </summary>
 /// <param name="medicineBase"></param>
-public class GetAllMedEffectsCommand(MedicineBase medicineBase)
-    : IRequest<ActionResult<MedicineDtoWithEffects>>
+public class GetMedicineFromDatabaseCommand(MedicineBase medicineBase)
+    : IRequest<ActionResult<Data.Models.Medicine>>
 {
     /// <summary>
     ///

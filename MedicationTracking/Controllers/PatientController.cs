@@ -37,7 +37,7 @@ public class PatientController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("{patientId}")]
-    public async Task<ActionResult<PatientDtoWithId>> GetPatientAsync(       
+    public async Task<ActionResult<PatientDtoWithId>> GetPatientAsync(
         [FromRoute] [Required] int patientId,
         CancellationToken cancellationToken
     )

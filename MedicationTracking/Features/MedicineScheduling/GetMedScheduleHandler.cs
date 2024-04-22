@@ -1,9 +1,6 @@
 using MediatR;
-using MedicationTracking.Features.Medicine;
-using MedicationTracking.Features.Patient;
 using MedicationTracking.Models;
 using MedicationTracking.Repository;
-using MedicationTracking.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.MedicineScheduling;
@@ -13,7 +10,8 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// </summary>
 /// <param name="repository"></param>
 /// <param name="mediator"></param>
-public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMediator mediator) : IRequestHandler<GetMedScheduleCommand, ActionResult<MedicineSchedulingSingelDto>>
+public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMediator mediator)
+    : IRequestHandler<GetMedScheduleCommand, ActionResult<MedicineSchedulingSingelDto>>
 {
     /// <summary>
     /// The handle method of the get med schedule handler
@@ -22,33 +20,42 @@ public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMe
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<ActionResult<MedicineSchedulingSingelDto>> Handle(GetMedScheduleCommand request, CancellationToken cancellationToken)
+    public async Task<ActionResult<MedicineSchedulingSingelDto>> Handle(
+        GetMedScheduleCommand request,
+        CancellationToken cancellationToken
+    )
     {
-        var medicineInDb =
-            (await mediator.Send(
-                new GetMedByNameCommand(new MedicineBase(request.PatientMedRequestDto.GenericName,
-                    request.PatientMedRequestDto.BrandName)), cancellationToken)).Value;
+        var medicineSchedule = (
+            await mediator.Send(
+                new GetMedScheduleFromDatabaseCommand(
+                    new PatientMedRequestDto(
+                        request.PatientMedRequestDto.GenericName,
+                        request.PatientMedRequestDto.BrandName,
+                        request.PatientMedRequestDto.PatientId
+                    )
+                ),
+                cancellationToken
+            )
+        ).Value;
 
-        if (medicineInDb == null)
-            return new NotFoundObjectResult(
-                "No such medicine with the given generic name and brand name exits in the database!");
+        if (medicineSchedule == null)
+            return new NotFoundObjectResult("Med Schedule not found in the database!");
 
-        var patientInDb = (await mediator.Send(new GetPatientByIdCommand(request.PatientMedRequestDto.PatientId),
-            cancellationToken)).Value;
+        /*var timeCategoryDescription = (
+            await mediator.Send(
+                new GetTimeCategoryDescriptionCommand(medicineSchedule.TimeCategoryId),
+                cancellationToken
+            )
+        ).Value;*/
 
-        if (patientInDb == null)
-            return new NotFoundObjectResult("No such patient with the given PatientId exists in the database!");
-
-        var medicineSchedule = await repository.FirstOrDefault(
-            new MedScheduleByPatientAndMedSpec(patientInDb.PatientId, medicineInDb.MedicineId), cancellationToken);
-
-        var timeCategoryDescription =
-            (await mediator.Send(new GetTimeCategoryDescriptionCommand(medicineSchedule.TimeCategoryId),
-                cancellationToken)).Value;
-
-        return new MedicineSchedulingSingelDto(medicineSchedule.ScheduleId, medicineSchedule.MedicineId,
-            medicineSchedule.PatientId, timeCategoryDescription!, medicineSchedule.Dosage, medicineSchedule.Start,
-            medicineSchedule.End);
-
+        return new MedicineSchedulingSingelDto(
+            medicineSchedule.ScheduleId,
+            medicineSchedule.MedicineId,
+            medicineSchedule.PatientId,
+            medicineSchedule.TimeCategory!.Description!,
+            medicineSchedule.Dosage,
+            medicineSchedule.Start,
+            medicineSchedule.End
+        );
     }
 }

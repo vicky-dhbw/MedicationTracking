@@ -17,28 +17,40 @@ public class MedicineSchedulingController(IMediator mediator) : ControllerBase
     /// mediator to send command
     /// </summary>
     private readonly IMediator _mediator = mediator;
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="medicineScheduleDto"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<ActionResult<MedicineSchedulingSingelDto>> ScheduleSingleMedication([FromBody] [Required] MedicineScheduleDto medicineScheduleDto, CancellationToken cancellationToken)
+    public async Task<ActionResult<MedicineSchedulingSingelDto>> ScheduleSingleMedication(
+        [FromBody] [Required] MedicineScheduleDto medicineScheduleDto,
+        CancellationToken cancellationToken
+    )
     {
-        return await _mediator.Send(new CreateMedScheduleCommand(medicineScheduleDto), cancellationToken);
+        return await _mediator.Send(
+            new CreateMedScheduleCommand(medicineScheduleDto),
+            cancellationToken
+        );
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="patientMedRequestDto"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<MedicineSchedulingSingelDto>> GetMedSchedule(
-        [FromBody] [Required] PatientMedRequestDto patientMedRequestDto, CancellationToken cancellationToken)
+        [FromBody] [Required] PatientMedRequestDto patientMedRequestDto,
+        CancellationToken cancellationToken
+    )
     {
-        return await _mediator.Send(new GetMedScheduleCommand(patientMedRequestDto), cancellationToken);
+        return await _mediator.Send(
+            new GetMedScheduleCommand(patientMedRequestDto),
+            cancellationToken
+        );
     }
 }

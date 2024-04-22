@@ -6,9 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.Medicine;
 
+/// <summary>
+/// Create medicine handler
+/// </summary>
+/// <param name="repository"></param>
 public class CreateMedicineHandler(IMedicationTrackingRepository repository)
     : IRequestHandler<CreateMedicineCommand, ActionResult<MedicineDto>>
 {
+    /// <summary>
+    /// Handler method of the handler
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<ActionResult<MedicineDto>> Handle(
         CreateMedicineCommand request,
         CancellationToken cancellationToken

@@ -5,9 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.Medicine;
 
+/// <summary>
+///
+/// </summary>
+/// <param name="repository"></param>
 public class DeleteMedicineHandler(IMedicationTrackingRepository repository)
     : IRequestHandler<DeleteMedicineCommand, ActionResult>
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<ActionResult> Handle(
         DeleteMedicineCommand request,
         CancellationToken cancellationToken
