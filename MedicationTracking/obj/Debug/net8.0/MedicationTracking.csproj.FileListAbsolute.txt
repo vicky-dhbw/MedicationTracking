@@ -112,3 +112,5 @@
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/obj/Debug/net8.0/MedicationTracking.sourcelink.json
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/Ardalis.Specification.dll
 /Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/Ardalis.Specification.EntityFrameworkCore.dll
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/bin/Debug/net8.0/MedicationTracking.xml
+/Users/vickysharma/Documents/Semester 6/MedicationTracking/MedicationTracking/MedicationTracking/obj/Debug/net8.0/MedicationTracking.xml

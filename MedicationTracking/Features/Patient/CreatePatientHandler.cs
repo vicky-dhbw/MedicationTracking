@@ -6,9 +6,9 @@ using MedicationTracking.Repository;
 namespace MedicationTracking.Features.Patient;
 
 public class CreatePatientHandler(IMedicationTrackingRepository repository)
-    : IRequestHandler<CreatePatientCommand, PatientDto>
+    : IRequestHandler<CreatePatientCommand, PatientDtoWithId>
 {
-    public async Task<PatientDto> Handle(
+    public async Task<PatientDtoWithId> Handle(
         CreatePatientCommand request,
         CancellationToken cancellationToken
     )
@@ -24,9 +24,15 @@ public class CreatePatientHandler(IMedicationTrackingRepository repository)
             cancellationToken
         );
 
+        var qrCode = await repository.AddAsync(
+            new QrCode { Patient = patient, PatientId = patient.PatientId },
+            cancellationToken
+        );
+
         await repository.SaveAsync(cancellationToken);
 
-        return new PatientDto(
+        return new PatientDtoWithId(
+            patient.PatientId,
             patient.FirstName,
             patient.LastName,
             patient.DateOfBirth,

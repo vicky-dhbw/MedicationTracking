@@ -1,17 +1,30 @@
 using MediatR;
 using MedicationTracking.Models;
 using MedicationTracking.Repository;
+using MedicationTracking.Specifications;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MedicationTracking.Features.Medicine;
 
 public class CreateMedicineHandler(IMedicationTrackingRepository repository)
-    : IRequestHandler<CreateMedicineCommand, MedicineDto>
+    : IRequestHandler<CreateMedicineCommand, ActionResult<MedicineDto>>
 {
-    public async Task<MedicineDto> Handle(
+    public async Task<ActionResult<MedicineDto>> Handle(
         CreateMedicineCommand request,
         CancellationToken cancellationToken
     )
     {
+        var medicineInDb = await repository.FirstOrDefault(
+            new SameGenericAndBrandNameSpec(request.MedicineDto),
+            cancellationToken
+        );
+
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (medicineInDb != null)
+            return new BadRequestObjectResult(
+                "Medicine with the same generic and brand name already exists!"
+            );
+
         var medicine = await repository.AddAsync(
             new Data.Models.Medicine(
                 request.MedicineDto.GenericName,
@@ -22,6 +35,7 @@ public class CreateMedicineHandler(IMedicationTrackingRepository repository)
             ),
             cancellationToken
         );
+
         await repository.SaveAsync(cancellationToken);
         return new MedicineDto(
             medicine.GenericName,

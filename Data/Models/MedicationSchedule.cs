@@ -3,36 +3,36 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models;
 
-public class MedicationSchedule
+public class MedicationSchedule(int medicineId, int patientId, int timeCategoryId, string dosage, DateTime start, DateTime end)
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ScheduleId { get; set; }
 
     [Required]
-    public int MedicineId { get; set; }
+    public int MedicineId { get; set; } = medicineId;
 
     [Required]
-    public int PatientId { get; set; }
+    public int PatientId { get; set; } = patientId;
 
     [Required]
-    public int TimeCategoryId { get; set; }
+    public int TimeCategoryId { get; set; } = timeCategoryId;
 
     [Required, StringLength(100)]
-    public required string Dosage { get; set; }
+    public string Dosage { get; set; } = dosage;
 
     [Required]
-    public DateTime Start { get; set; }
+    public DateTime Start { get; set; } = start;
 
     [Required]
-    public DateTime End { get; set; }
+    public DateTime End { get; set; } = end;
 
     [ForeignKey("MedicineId")]
-    public virtual required Medicine Medicine { get; set; }
+    public virtual Medicine? Medicine { get; set; }
 
     [ForeignKey("PatientId")]
-    public virtual required Patient Patient { get; set; }
+    public virtual Patient? Patient { get; set; }
 
     [ForeignKey("TimeCategoryId")]
-    public virtual required TimeCategory TimeCategory { get; set; }
+    public virtual TimeCategory? TimeCategory { get; set; }
 }

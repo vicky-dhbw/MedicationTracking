@@ -8,12 +8,8 @@ public class MedicineDto(
     string color,
     string form,
     string? administrationMethod
-)
+) : MedicineBase(genericName, brandName)
 {
-    public string GenericName { get; set; } = genericName;
-
-    public string BrandName { get; set; } = brandName;
-
     public string Color { get; set; } = color;
 
     public string Form { get; set; } = form;

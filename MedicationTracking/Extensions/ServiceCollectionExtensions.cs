@@ -1,3 +1,4 @@
+using System.Reflection;
 using Data.Database;
 using MedicationTracking.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ public static class ServiceCollectionExtensions
         // Adding DbContext from Data Project
         services.AddDbContext<MedicationTrackingContext>(options =>
         {
+            options.UseLazyLoadingProxies();
             options.UseMySql(
                 connectionString,
                 ServerVersion.AutoDetect(connectionString),
@@ -36,5 +38,12 @@ public static class ServiceCollectionExtensions
 
         // Registering the repository
         services.AddScoped<IMedicationTrackingRepository, MedicationTrackingRepository>();
+
+        // Swagger xml documentation
+        services.AddSwaggerGen(options =>
+        {
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+        });
     }
 }
