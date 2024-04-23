@@ -8,7 +8,7 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// The request to get a single med schedule
 /// </summary>
 public class GetMedScheduleCommand(PatientMedRequestDto patientMedRequestDto)
-    : IRequest<ActionResult<MedicineSchedulingSingelDto>>
+    : IRequest<ActionResult<List<MedicineSchedulingSingelDto>>>
 {
     /// <summary>
     /// The dto object received by the controller is passed here

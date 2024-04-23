@@ -16,7 +16,7 @@ namespace MedicationTracking.Features.MedicineScheduling;
 public class GetMedScheduleFromDatabaseHandler(
     IMedicationTrackingRepository repository,
     IMediator mediator
-) : IRequestHandler<GetMedScheduleFromDatabaseCommand, ActionResult<MedicationSchedule>>
+) : IRequestHandler<GetMedScheduleFromDatabaseCommand, ActionResult<List<MedicationSchedule>>>
 {
     /// <summary>
     ///
@@ -25,45 +25,43 @@ public class GetMedScheduleFromDatabaseHandler(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<ActionResult<MedicationSchedule>> Handle(
+    public async Task<ActionResult<List<MedicationSchedule>>> Handle(
         GetMedScheduleFromDatabaseCommand request,
         CancellationToken cancellationToken
     )
     {
-        var medicineInDb = (
-            await mediator.Send(
-                new GetMedByNameCommand(
-                    new MedicineBase(
-                        request.PatientMedRequestDto.GenericName,
-                        request.PatientMedRequestDto.BrandName
-                    )
-                ),
-                cancellationToken
-            )
-        ).Value;
+        var medicineInDb = await repository.FirstOrDefault(
+            new SameGenericAndBrandNameSpec(
+                new MedicineBase(
+                    request.PatientMedRequestDto.GenericName,
+                    request.PatientMedRequestDto.BrandName
+                )
+            ),
+            cancellationToken
+        );
 
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (medicineInDb == null)
             return new NotFoundObjectResult(
                 "No such medicine with the given generic name and brand name exits in the database!"
             );
 
-        var patientInDb = (
-            await mediator.Send(
-                new GetPatientByIdCommand(request.PatientMedRequestDto.PatientId),
-                cancellationToken
-            )
-        ).Value;
+        var patientInDb = await repository.FirstOrDefault(
+            new PatientByIdSpec(request.PatientMedRequestDto.PatientId),
+            cancellationToken
+        );
 
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (patientInDb == null)
             return new NotFoundObjectResult(
                 "No such patient with the given PatientId exists in the database!"
             );
 
-        var medicineSchedule = await repository.FirstOrDefault(
+        var medicineSchedule = await repository.ListAsync(
             new MedScheduleByPatientAndMedSpec(patientInDb.PatientId, medicineInDb.MedicineId),
             cancellationToken
         );
 
-        return medicineSchedule;
+        return medicineSchedule.ToList();
     }
 }

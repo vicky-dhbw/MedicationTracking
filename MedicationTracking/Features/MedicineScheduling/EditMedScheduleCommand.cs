@@ -7,12 +7,12 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// <summary>
 ///
 /// </summary>
-/// <param name="medicineScheduleDto"></param>
-public class EditMedScheduleCommand(MedicineScheduleDto medicineScheduleDto)
+/// <param name="medicineScheduleBase"></param>
+public class EditMedScheduleCommand(MedicineScheduleBase medicineScheduleBase)
     : IRequest<ActionResult<MedicineSchedulingSingelDto>>
 {
     /// <summary>
     ///
     /// </summary>
-    public MedicineScheduleDto MedicineScheduleDto { get; } = medicineScheduleDto;
+    public MedicineScheduleBase MedicineScheduleBase { get; } = medicineScheduleBase;
 }

@@ -10,7 +10,7 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// </summary>
 /// <param name="patientMedRequestDto"></param>
 public class GetMedScheduleFromDatabaseCommand(PatientMedRequestDto patientMedRequestDto)
-    : IRequest<ActionResult<MedicationSchedule>>
+    : IRequest<ActionResult<List<MedicationSchedule>>>
 {
     /// <summary>
     ///

@@ -85,19 +85,23 @@ public class MedicineController(IMediator mediator) : ControllerBase
     }
 
     /// <summary>
-    /// Delete a Medicine from the database
+    ///
     /// </summary>
-    /// <param name="medicineId"></param>
+    /// <param name="genericName"></param>
+    /// <param name="brandName"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpDelete]
-    [Route("{medicineId}")]
     public async Task<ActionResult> DeleteMedicineAsync(
-        [FromRoute] [Required] int medicineId,
+        [FromQuery] [Required] string genericName,
+        [FromQuery] [Required] string brandName,
         CancellationToken cancellationToken
     )
     {
-        return await _mediator.Send(new DeleteMedicineCommand(medicineId), cancellationToken);
+        return await _mediator.Send(
+            new DeleteMedicineCommand(genericName, brandName),
+            cancellationToken
+        );
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
 using MediatR;
+using MedicationTracking.Models;
 using MedicationTracking.Repository;
 using MedicationTracking.Specifications;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +25,28 @@ public class DeleteMedicineHandler(IMedicationTrackingRepository repository)
     )
     {
         var medicineToBeDeleted = await repository.FirstOrDefault(
-            new MedicineByIdSpec(request.MedicineId),
+            new SameGenericAndBrandNameSpec(
+                new MedicineBase(request.GenericName, request.BrandName)
+            ),
             cancellationToken
         );
 
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (medicineToBeDeleted == null)
             return new BadRequestResult();
+
+        var medicineSchedulesForMedicine = (
+            await repository.ListAsync(
+                new AllSchdulesForMedicineIdSpec(medicineToBeDeleted.MedicineId),
+                cancellationToken
+            )
+        ).ToList();
+
+        if (medicineSchedulesForMedicine.Count != 0)
+            return new BadRequestObjectResult(
+                "Medicine is scheduled for some patients, therefore cannot be deleted!"
+            );
+
         repository.Remove(medicineToBeDeleted);
         await repository.SaveAsync(cancellationToken);
         return new OkResult();

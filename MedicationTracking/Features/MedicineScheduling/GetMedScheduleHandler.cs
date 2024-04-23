@@ -11,7 +11,7 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// <param name="repository"></param>
 /// <param name="mediator"></param>
 public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMediator mediator)
-    : IRequestHandler<GetMedScheduleCommand, ActionResult<MedicineSchedulingSingelDto>>
+    : IRequestHandler<GetMedScheduleCommand, ActionResult<List<MedicineSchedulingSingelDto>>>
 {
     /// <summary>
     /// The handle method of the get med schedule handler
@@ -20,12 +20,12 @@ public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMe
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public async Task<ActionResult<MedicineSchedulingSingelDto>> Handle(
+    public async Task<ActionResult<List<MedicineSchedulingSingelDto>>> Handle(
         GetMedScheduleCommand request,
         CancellationToken cancellationToken
     )
     {
-        var medicineSchedule = (
+        var medicineScheduleList = (
             await mediator.Send(
                 new GetMedScheduleFromDatabaseCommand(
                     new PatientMedRequestDto(
@@ -38,24 +38,22 @@ public class GetMedScheduleHandler(IMedicationTrackingRepository repository, IMe
             )
         ).Value;
 
-        if (medicineSchedule == null)
+        if (medicineScheduleList == null)
             return new NotFoundObjectResult("Med Schedule not found in the database!");
 
-        /*var timeCategoryDescription = (
-            await mediator.Send(
-                new GetTimeCategoryDescriptionCommand(medicineSchedule.TimeCategoryId),
-                cancellationToken
-            )
-        ).Value;*/
+        if (medicineScheduleList.Count == 0)
+            return new NotFoundObjectResult("No Med Schedule not found in the database!");
 
-        return new MedicineSchedulingSingelDto(
-            medicineSchedule.ScheduleId,
-            medicineSchedule.MedicineId,
-            medicineSchedule.PatientId,
-            medicineSchedule.TimeCategory!.Description!,
-            medicineSchedule.Dosage,
-            medicineSchedule.Start,
-            medicineSchedule.End
-        );
+        return medicineScheduleList
+            .Select(ms => new MedicineSchedulingSingelDto(
+                ms.ScheduleId,
+                ms.MedicineId,
+                ms.PatientId,
+                ms.TimeCategory!.Description!,
+                ms.Dosage,
+                ms.Start,
+                ms.End
+            ))
+            .ToList();
     }
 }

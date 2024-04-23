@@ -3,6 +3,7 @@ using MediatR;
 using MedicationTracking.Features.TimeCategory;
 using MedicationTracking.Models;
 using MedicationTracking.Repository;
+using MedicationTracking.Specifications;
 using Microsoft.AspNetCore.Mvc;
 #pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
 
@@ -27,25 +28,18 @@ public class EditMedicineScheduleHandler(
         CancellationToken cancellationToken
     )
     {
-        var medicineSchedule = (
-            await mediator.Send(
-                new GetMedScheduleFromDatabaseCommand(
-                    new PatientMedRequestDto(
-                        request.MedicineScheduleDto.GenericName,
-                        request.MedicineScheduleDto.BrandName,
-                        request.MedicineScheduleDto.PatientId
-                    )
-                ),
-                cancellationToken
-            )
-        ).Value;
+        var medicineSchedule = await repository.FirstOrDefault(
+            new MedScheduleByIdSpec(request.MedicineScheduleBase.ScheduleId),
+            cancellationToken
+        );
 
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (medicineSchedule == null)
             return new NotFoundObjectResult("Med Schedule not found in the database!");
 
         var timeCategoryNew = (
             await mediator.Send(
-                new GetTimeCategoryIdCommand(request.MedicineScheduleDto.TimeCategory),
+                new GetTimeCategoryIdCommand(request.MedicineScheduleBase.TimeCategory),
                 cancellationToken
             )
         ).Value;
@@ -66,19 +60,19 @@ public class EditMedicineScheduleHandler(
                 timeCategoryOld!.TimeCategoryId,
                 timeCategoryNew.TimeCategoryId,
                 medicineSchedule.Dosage,
-                request.MedicineScheduleDto.Dosage,
+                request.MedicineScheduleBase.Dosage,
                 medicineSchedule.Start,
-                request.MedicineScheduleDto.Start,
+                request.MedicineScheduleBase.Start,
                 medicineSchedule.End,
-                request.MedicineScheduleDto.End
+                request.MedicineScheduleBase.End
             ),
             cancellationToken
         );
 
-        medicineSchedule.Dosage = request.MedicineScheduleDto.Dosage;
+        medicineSchedule.Dosage = request.MedicineScheduleBase.Dosage;
         medicineSchedule.TimeCategoryId = timeCategoryNew.TimeCategoryId;
-        medicineSchedule.Start = request.MedicineScheduleDto.Start;
-        medicineSchedule.End = request.MedicineScheduleDto.End;
+        medicineSchedule.Start = request.MedicineScheduleBase.Start;
+        medicineSchedule.End = request.MedicineScheduleBase.End;
 
         await repository.SaveAsync(cancellationToken);
 

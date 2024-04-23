@@ -1,9 +1,16 @@
 namespace MedicationTracking.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
-public class MedicineScheduleBase(int scheduleId, int medicineId, string timeCategory, string dosage, DateTime start, DateTime end)
+public class MedicineScheduleBase(
+    int scheduleId,
+    int medicineId,
+    string timeCategory,
+    string dosage,
+    DateTime start,
+    DateTime end
+)
 {
     /// <summary>
     /// Schedule id of the medication schedule
@@ -14,7 +21,7 @@ public class MedicineScheduleBase(int scheduleId, int medicineId, string timeCat
     /// medicine id of the medication schedule
     /// </summary>
     public int MedicineId { get; set; } = medicineId;
-    
+
     /// <summary>
     /// Time at which the medicine needs to be taken
     /// </summary>

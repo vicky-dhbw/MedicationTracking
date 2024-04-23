@@ -17,5 +17,4 @@ public class MedicineSchedulingSingelDto(
     /// Patient id of the medication schedule
     /// </summary>
     public int PatientId { get; set; } = patientId;
-
 }

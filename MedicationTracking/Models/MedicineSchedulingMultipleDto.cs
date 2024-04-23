@@ -1,7 +1,7 @@
 namespace MedicationTracking.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public class MedicineSchedulingMultipleDto
 {
@@ -9,7 +9,7 @@ public class MedicineSchedulingMultipleDto
     /// patient base information
     /// </summary>
     public PatientBase Patient { get; set; } = null!;
-    
+
     /// <summary>
     /// list of all medicine schedule for the patient
     /// </summary>

@@ -29,18 +29,17 @@ public class CreateMedScheduleHandler(IMedicationTrackingRepository repository, 
         CancellationToken cancellationToken
     )
     {
-        var medicineInDb = (
-            await mediator.Send(
-                new GetMedicineFromDatabaseCommand(
-                    new MedicineBase(
-                        request.MedicineSchedule.GenericName,
-                        request.MedicineSchedule.BrandName
-                    )
-                ),
-                cancellationToken
-            )
-        ).Value;
+        var medicineInDb = await repository.FirstOrDefault(
+            new SameGenericAndBrandNameSpec(
+                new MedicineBase(
+                    request.MedicineSchedule.GenericName,
+                    request.MedicineSchedule.BrandName
+                )
+            ),
+            cancellationToken
+        );
 
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (medicineInDb == null)
             return new BadRequestObjectResult(
                 "Medicine with the generic and brand does not exist!"

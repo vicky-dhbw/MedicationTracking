@@ -6,11 +6,17 @@ namespace MedicationTracking.Features.Medicine;
 /// <summary>
 ///
 /// </summary>
-/// <param name="medicineId"></param>
-public class DeleteMedicineCommand(int medicineId) : IRequest<ActionResult>
+/// <param name="genericName"></param>
+/// <param name="brandName"></param>
+public class DeleteMedicineCommand(string genericName, string brandName) : IRequest<ActionResult>
 {
     /// <summary>
     ///
     /// </summary>
-    public int MedicineId { get; } = medicineId;
+    public string GenericName { get; set; } = genericName;
+
+    /// <summary>
+    ///
+    /// </summary>
+    public string BrandName { get; set; } = brandName;
 }
