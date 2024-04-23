@@ -13,7 +13,10 @@ namespace MedicationTracking.Controllers;
 [Route("api/[controller]")]
 public class PatientController(IMediator mediator) : ControllerBase
 {
-    protected readonly IMediator _mediator = mediator;
+    /// <summary>
+    /// 
+    /// </summary>
+    private readonly IMediator _mediator = mediator;
 
     /// <summary>
     /// Create a Patient and save it in the database
@@ -75,5 +78,30 @@ public class PatientController(IMediator mediator) : ControllerBase
     )
     {
         return await _mediator.Send(new DeletePatientCommand(patientId), cancellationToken);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("AllPatients")]
+    public async Task<ActionResult<List<PatientDtoWithId>>> GetAllPatientsAsync(CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetAllPatientsCommand(), cancellationToken);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="qrCodeValue"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("GetPatient/{qrCodeValue}")]
+    public async Task<ActionResult<PatientBase>> GetPatientByQrCodeValue(string qrCodeValue,CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetPatientByQrCodeCommand(qrCodeValue), cancellationToken);
     }
 }

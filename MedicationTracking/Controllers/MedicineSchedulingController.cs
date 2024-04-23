@@ -19,7 +19,7 @@ public class MedicineSchedulingController(IMediator mediator) : ControllerBase
     private readonly IMediator _mediator = mediator;
 
     /// <summary>
-    ///
+    /// Schedule a medication for patient
     /// </summary>
     /// <param name="medicineScheduleDto"></param>
     /// <param name="cancellationToken"></param>
@@ -37,20 +37,51 @@ public class MedicineSchedulingController(IMediator mediator) : ControllerBase
     }
 
     /// <summary>
-    ///
+    /// Get a medication schedule for a patient
     /// </summary>
-    /// <param name="patientMedRequestDto"></param>
+    /// <param name="genericName"></param>
+    /// <param name="brandNName"></param>
+    /// <param name="patientId"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<MedicineSchedulingSingelDto>> GetMedSchedule(
-        [FromBody] [Required] PatientMedRequestDto patientMedRequestDto,
+    [Route("SingleMedForPatient")]
+    public async Task<ActionResult<MedicineSchedulingSingelDto>> GetSingleMedScheduleAsync(
+        [FromQuery] [Required] string genericName, [Required] [FromQuery] string brandNName, [Required] [FromQuery] int patientId,
         CancellationToken cancellationToken
     )
     {
         return await _mediator.Send(
-            new GetMedScheduleCommand(patientMedRequestDto),
+            new GetMedScheduleCommand(new PatientMedRequestDto(genericName, brandNName, patientId)),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// Edit a medication schedule of a patient
+    /// </summary>
+    /// <param name="medicineScheduleDto"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route("EditMedSchedule")]
+    public async Task<ActionResult<MedicineSchedulingSingelDto>> EditMedScheduleAsync(
+        [FromBody] [Required] MedicineScheduleDto medicineScheduleDto, CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new EditMedScheduleCommand(medicineScheduleDto), cancellationToken);
+    }
+
+    /// <summary>
+    /// Get all medicine schedules of a patient
+    /// </summary>
+    /// <param name="patientId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("AllMedForPatient/{patientId}")]
+    public async Task<ActionResult<MedicineSchedulingMultipleDto>> GetAllMedForPatientAsync([FromRoute] int patientId,
+        CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetAllMedsForPatientCommand(patientId), cancellationToken);
     }
 }

@@ -76,7 +76,7 @@ public class EditMedicineScheduleHandler(
         );
 
         medicineSchedule.Dosage = request.MedicineScheduleDto.Dosage;
-        medicineSchedule.TimeCategoryId = medicineSchedule.TimeCategory!.TimeCategoryId;
+        medicineSchedule.TimeCategoryId = timeCategoryNew.TimeCategoryId;
         medicineSchedule.Start = request.MedicineScheduleDto.Start;
         medicineSchedule.End = request.MedicineScheduleDto.End;
 
