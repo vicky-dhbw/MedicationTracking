@@ -1379,6 +1379,40 @@
             
              </summary>
         </member>
+        <member name="T:MedicationTracking.Models.PatientDtoWithId">
+            <summary>
+            
+            </summary>
+            <param name="patientId"></param>
+            <param name="firstName"></param>
+            <param name="lastName"></param>
+            <param name="dateOfBirth"></param>
+            <param name="gender"></param>
+            <param name="roomNo"></param>
+        </member>
+        <member name="M:MedicationTracking.Models.PatientDtoWithId.#ctor(System.Int32,System.String,System.String,System.DateTime,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="patientId"></param>
+            <param name="firstName"></param>
+            <param name="lastName"></param>
+            <param name="dateOfBirth"></param>
+            <param name="gender"></param>
+            <param name="roomNo"></param>
+        </member>
+        <member name="P:MedicationTracking.Models.PatientDtoWithId.PatientId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MedicationTracking.Models.PatientDtoWithId.op_Implicit(Data.Models.Patient)~MedicationTracking.Models.PatientDtoWithId">
+            <summary>
+            
+            </summary>
+            <param name="patient"></param>
+            <returns></returns>
+        </member>
         <member name="T:MedicationTracking.Models.PatientMedRequestDto">
             <summary>
             Request for a medicine schedule
