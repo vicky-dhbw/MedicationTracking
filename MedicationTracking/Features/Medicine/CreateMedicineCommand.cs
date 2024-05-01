@@ -8,7 +8,7 @@ namespace MedicationTracking.Features.Medicine;
 ///
 /// </summary>
 /// <param name="medicineDto"></param>
-public class CreateMedicineCommand(MedicineDto medicineDto) : IRequest<ActionResult<MedicineDto>>
+public class CreateMedicineCommand(MedicineDto medicineDto) : IRequest<ActionResult<MedicineDtoWithId>>
 {
     /// <summary>
     ///

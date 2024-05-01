@@ -25,7 +25,7 @@ public class MedicineController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<ActionResult<MedicineDto>> CreateMedicineAsync(
+    public async Task<ActionResult<MedicineDtoWithId>> CreateMedicineAsync(
         [FromBody] [Required] MedicineDto medicine,
         CancellationToken cancellationToken
     )
@@ -33,6 +33,18 @@ public class MedicineController(IMediator mediator) : ControllerBase
         return await _mediator.Send(new CreateMedicineCommand(medicine), cancellationToken);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("AllMedsWithEffects")]
+    public async Task<ActionResult<List<MedicineDtoWithEffects>>> GetAllMedsWithEffects(CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetAllMedsCommand(), cancellationToken);
+    }
+    
     /// <summary>
     /// Get Medicine from medicineId
     /// </summary>

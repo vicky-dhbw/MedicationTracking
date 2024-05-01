@@ -11,7 +11,7 @@ namespace MedicationTracking.Features.Medicine;
 /// </summary>
 /// <param name="repository"></param>
 public class CreateMedicineHandler(IMedicationTrackingRepository repository)
-    : IRequestHandler<CreateMedicineCommand, ActionResult<MedicineDto>>
+    : IRequestHandler<CreateMedicineCommand, ActionResult<MedicineDtoWithId>>
 {
     /// <summary>
     /// Handler method of the handler
@@ -19,7 +19,7 @@ public class CreateMedicineHandler(IMedicationTrackingRepository repository)
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task<ActionResult<MedicineDto>> Handle(
+    public async Task<ActionResult<MedicineDtoWithId>> Handle(
         CreateMedicineCommand request,
         CancellationToken cancellationToken
     )
@@ -47,7 +47,8 @@ public class CreateMedicineHandler(IMedicationTrackingRepository repository)
         );
 
         await repository.SaveAsync(cancellationToken);
-        return new MedicineDto(
+        return new MedicineDtoWithId(
+            medicine.MedicineId,
             medicine.GenericName,
             medicine.BrandName,
             medicine.Color,
