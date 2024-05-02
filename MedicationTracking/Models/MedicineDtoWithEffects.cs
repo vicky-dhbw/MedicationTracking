@@ -19,5 +19,5 @@ public class MedicineDtoWithEffects(
     /// <summary>
     /// 
     /// </summary>
-    public List<MedicationEffectBase> MedicationEffects { get; set; }
+    public List<MedicationEffectWithId> MedicationEffects { get; set; }
 }

@@ -4,8 +4,15 @@ using MedicationTracking.Models;
 
 namespace MedicationTracking.Specifications;
 
+/// <summary>
+/// 
+/// </summary>
 public sealed class SameGenericAndBrandNameSpec : Specification<Medicine>
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="medicine"></param>
     public SameGenericAndBrandNameSpec(MedicineBase medicine)
     {
         Query.Where(m =>

@@ -174,4 +174,17 @@ public class MedicineController(IMediator mediator) : ControllerBase
             cancellationToken
         );
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="effectId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpDelete]
+    [Route("DeleteEffect/{effectId}")]
+    public async Task<ActionResult> DeleteMedEffectAsync([FromRoute] int effectId, CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new DeleteMedEffectCommand(effectId), cancellationToken);
+    }
 }

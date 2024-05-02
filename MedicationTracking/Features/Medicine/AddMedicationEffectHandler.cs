@@ -26,7 +26,7 @@ public class AddMedicationEffectHandler(IMedicationTrackingRepository repository
     )
     {
         var medicineInDb = await repository.FirstOrDefault(
-            new SameGenericAndBrandNameSpec(request.MedicationEffect),
+            new SameGenericAndBrandNameSpec(new MedicineBase(request.MedicationEffect.GenericName, request.MedicationEffect.BrandName)),
             cancellationToken
         );
 
@@ -35,7 +35,7 @@ public class AddMedicationEffectHandler(IMedicationTrackingRepository repository
             return new BadRequestObjectResult(
                 "Medicine with the generic and brand does not exists!"
             );
-
+        
         var medicineEffect = await repository.AddAsync(
             new MedicationEffect(
                 medicineInDb.MedicineId,
