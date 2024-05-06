@@ -1,4 +1,5 @@
 using MediatR;
+using MedicationTracking.Features.MedAdministrationLog;
 using MedicationTracking.Models;
 using MedicationTracking.Repository;
 using MedicationTracking.Specifications;
@@ -43,7 +44,7 @@ public class GetAllMedsForPatientHandler(
                 new MedScheduleByPatientIdSpec(patient.PatientId),
                 cancellationToken
             )
-        ).ToList();
+        ).Where(schedule => schedule.Start <= DateTime.Today && schedule.End >= DateTime.Today);
 
         var medInfoScheduleInfos = new List<MedInfoScheduleInfo>();
 
@@ -54,10 +55,21 @@ public class GetAllMedsForPatientHandler(
                 cancellationToken
             );
 
+            var medAdminLog = (await mediator.Send(
+                new GetMedAdminLogCommand(medicineSchedule.ScheduleId),
+                cancellationToken
+            )).Value;
+
             medInfoScheduleInfos.Add(
                 new MedInfoScheduleInfo
                 {
-                    MedicineBase = new MedicineBase(medicine.GenericName, medicine.BrandName),
+                    MedicineDto = new MedicineDto(
+                        medicine.GenericName,
+                        medicine.BrandName,
+                        medicine.Color,
+                        medicine.Form,
+                        medicine.AdministrationMethod
+                    ),
                     MedicineScheduleBase = new MedicineScheduleBase(
                         medicineSchedule.ScheduleId,
                         medicineSchedule.MedicineId,
@@ -65,7 +77,8 @@ public class GetAllMedsForPatientHandler(
                         medicineSchedule.Dosage,
                         medicineSchedule.Start,
                         medicineSchedule.End
-                    )
+                    ),
+                    MedAdministrationLog = medAdminLog
                 }
             );
         }

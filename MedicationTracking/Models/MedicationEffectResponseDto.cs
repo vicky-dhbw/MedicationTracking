@@ -1,7 +1,7 @@
 namespace MedicationTracking.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 /// <param name="effectId"></param>
 /// <param name="medicineId"></param>
@@ -15,12 +15,12 @@ public class MedicationEffectResponseDto(
 ) : MedicationEffectBase(gender, description)
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public int EffectId { get; set; } = effectId;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public int MedicineId { get; set; } = medicineId;
 }

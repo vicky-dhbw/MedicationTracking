@@ -4,9 +4,6 @@ using Data.Models;
 namespace MedicationTracking.Specifications;
 
 /// <summary>
-/// 
+///
 /// </summary>
-public class AllMedsSpec : Specification<Medicine>
-{
-    
-}
+public class AllMedsSpec : Specification<Medicine> { }

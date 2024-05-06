@@ -42,7 +42,7 @@ public class GetAllMedEffectsHandler(IMedicationTrackingRepository repository)
                 cancellationToken
             )
         )
-            .Select(e => new MedicationEffectWithId(e.EffectId,e.Gender, e.Description!))
+            .Select(e => new MedicationEffectWithId(e.EffectId, e.Gender, e.Description!))
             .ToList();
 
         return new MedicineDtoWithEffects(

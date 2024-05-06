@@ -3,7 +3,7 @@ using Data.Models;
 namespace MedicationTracking.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 /// <param name="genericName"></param>
 /// <param name="brandName"></param>
@@ -19,22 +19,22 @@ public class MedicineDto(
 ) : MedicineBase(genericName, brandName)
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public string Color { get; set; } = color;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public string Form { get; set; } = form;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public string? AdministrationMethod { get; set; } = administrationMethod;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="medicine"></param>
     /// <returns></returns>

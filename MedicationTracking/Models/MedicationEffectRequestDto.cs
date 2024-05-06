@@ -3,7 +3,7 @@ using Data.Models;
 namespace MedicationTracking.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 /// <param name="genericName"></param>
 /// <param name="brandName"></param>
@@ -17,12 +17,12 @@ public class MedicationEffectRequestDto(
 ) : MedicineBase(genericName, brandName)
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public required string Gender { get; set; } = gender;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public string? Description { get; set; } = description;
 }

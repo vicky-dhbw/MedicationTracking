@@ -5,24 +5,24 @@
     </assembly>
     <members>
         <member name="T:MedicationTracking.Controllers.MedAdministrationLogController">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="mediator"></param>
+             </summary>
+             <param name="mediator"></param>
         </member>
         <member name="M:MedicationTracking.Controllers.MedAdministrationLogController.#ctor(MediatR.IMediator)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="mediator"></param>
+             </summary>
+             <param name="mediator"></param>
         </member>
         <member name="M:MedicationTracking.Controllers.MedAdministrationLogController.CreateMedAdministrationEntryAsync(MedicationTracking.Models.MedAdministrationLogBase,System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="administrationLogBase"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="administrationLogBase"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Controllers.MedicineController">
             <summary>
@@ -50,11 +50,11 @@
             <returns></returns>
         </member>
         <member name="M:MedicationTracking.Controllers.MedicineController.GetAllMedsWithEffects(System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="M:MedicationTracking.Controllers.MedicineController.GetMedicineAsync(System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -116,12 +116,12 @@
             <returns></returns>
         </member>
         <member name="M:MedicationTracking.Controllers.MedicineController.DeleteMedEffectAsync(System.Int32,System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="effectId"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Controllers.MedicineSchedulingController">
             <summary>
@@ -277,41 +277,41 @@
              <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogCommand">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="scheduleId"></param>
+             </summary>
+             <param name="scheduleId"></param>
         </member>
         <member name="M:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogCommand.#ctor(System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="scheduleId"></param>
+             </summary>
+             <param name="scheduleId"></param>
         </member>
         <member name="P:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogCommand.ScheduleId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogHandler">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
+             </summary>
+             <param name="repository"></param>
         </member>
-        <member name="M:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogHandler.#ctor(MedicationTracking.Repository.IMedicationTrackingRepository)">
-            <summary>
+        <member name="M:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogHandler.#ctor(MedicationTracking.Repository.IMedicationTrackingRepository,MedicationTracking.Utility.TimeCategoryService)">
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
+             </summary>
+             <param name="repository"></param>
         </member>
         <member name="M:MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogHandler.Handle(MedicationTracking.Features.MedAdministrationLog.GetMedAdminLogCommand,System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="request"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="request"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.AddMedicationEffectCommand">
              <summary>
@@ -388,41 +388,41 @@
             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.DeleteMedEffectCommand">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
+             </summary>
+             <param name="effectId"></param>
         </member>
         <member name="M:MedicationTracking.Features.Medicine.DeleteMedEffectCommand.#ctor(System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
+             </summary>
+             <param name="effectId"></param>
         </member>
         <member name="P:MedicationTracking.Features.Medicine.DeleteMedEffectCommand.EffectId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.DeleteMedEffectHandler">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
+             </summary>
+             <param name="repository"></param>
         </member>
         <member name="M:MedicationTracking.Features.Medicine.DeleteMedEffectHandler.#ctor(MedicationTracking.Repository.IMedicationTrackingRepository)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
+             </summary>
+             <param name="repository"></param>
         </member>
         <member name="M:MedicationTracking.Features.Medicine.DeleteMedEffectHandler.Handle(MedicationTracking.Features.Medicine.DeleteMedEffectCommand,System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="request"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="request"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.DeleteMedicineCommand">
              <summary>
@@ -543,31 +543,31 @@
              <returns></returns>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.GetAllMedsCommand">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.GetAllMedsHandler">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
-            <param name="mediator"></param>
+             </summary>
+             <param name="repository"></param>
+             <param name="mediator"></param>
         </member>
         <member name="M:MedicationTracking.Features.Medicine.GetAllMedsHandler.#ctor(MedicationTracking.Repository.IMedicationTrackingRepository,MediatR.IMediator)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="repository"></param>
-            <param name="mediator"></param>
+             </summary>
+             <param name="repository"></param>
+             <param name="mediator"></param>
         </member>
         <member name="M:MedicationTracking.Features.Medicine.GetAllMedsHandler.Handle(MedicationTracking.Features.Medicine.GetAllMedsCommand,System.Threading.CancellationToken)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="request"></param>
-            <param name="cancellationToken"></param>
-            <returns></returns>
+             </summary>
+             <param name="request"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Features.Medicine.GetMedByNameCommand">
              <summary>
@@ -1270,105 +1270,105 @@
              </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicationEffectBase">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicationEffectBase.#ctor(System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectBase.Gender">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectBase.Description">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicationEffectRequestDto">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicationEffectRequestDto.#ctor(System.String,System.String,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectRequestDto.Gender">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectRequestDto.Description">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicationEffectResponseDto">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
-            <param name="medicineId"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="effectId"></param>
+             <param name="medicineId"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicationEffectResponseDto.#ctor(System.Int32,System.Int32,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
-            <param name="medicineId"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="effectId"></param>
+             <param name="medicineId"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectResponseDto.EffectId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectResponseDto.MedicineId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicationEffectWithId">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="effectId"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicationEffectWithId.#ctor(System.Int32,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
-            <param name="gender"></param>
-            <param name="description"></param>
+             </summary>
+             <param name="effectId"></param>
+             <param name="gender"></param>
+             <param name="description"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicationEffectWithId.EffectId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicineBase">
              <summary>
@@ -1395,105 +1395,105 @@
              </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicineDto">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicineDto.#ctor(System.String,System.String,System.String,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicineDto.Color">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedicineDto.Form">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedicineDto.AdministrationMethod">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Models.MedicineDto.op_Implicit(Data.Models.Medicine)~MedicationTracking.Models.MedicineDto">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="medicine"></param>
-            <returns></returns>
+             </summary>
+             <param name="medicine"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Models.MedicineDtoWithEffects">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicineDtoWithEffects.#ctor(System.String,System.String,System.String,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicineDtoWithEffects.MedicationEffects">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Models.MedicineDtoWithId">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="medicineId"></param>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="medicineId"></param>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="M:MedicationTracking.Models.MedicineDtoWithId.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="medicineId"></param>
-            <param name="genericName"></param>
-            <param name="brandName"></param>
-            <param name="color"></param>
-            <param name="form"></param>
-            <param name="administrationMethod"></param>
+             </summary>
+             <param name="medicineId"></param>
+             <param name="genericName"></param>
+             <param name="brandName"></param>
+             <param name="color"></param>
+             <param name="form"></param>
+             <param name="administrationMethod"></param>
         </member>
         <member name="P:MedicationTracking.Models.MedicineDtoWithId.MedicineId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Models.MedicineDtoWithId.op_Implicit(Data.Models.Medicine)~MedicationTracking.Models.MedicineDtoWithId">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="medicine"></param>
-            <returns></returns>
+             </summary>
+             <param name="medicine"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Models.MedicineScheduleBase">
              <summary>
@@ -1605,12 +1605,17 @@
             
              </summary>
         </member>
-        <member name="P:MedicationTracking.Models.MedInfoScheduleInfo.MedicineBase">
+        <member name="P:MedicationTracking.Models.MedInfoScheduleInfo.MedicineDto">
              <summary>
             
              </summary>
         </member>
         <member name="P:MedicationTracking.Models.MedInfoScheduleInfo.MedicineScheduleBase">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:MedicationTracking.Models.MedInfoScheduleInfo.MedAdministrationLog">
              <summary>
             
              </summary>
@@ -1661,38 +1666,38 @@
              </summary>
         </member>
         <member name="T:MedicationTracking.Models.PatientDtoWithId">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="patientId"></param>
-            <param name="firstName"></param>
-            <param name="lastName"></param>
-            <param name="dateOfBirth"></param>
-            <param name="gender"></param>
-            <param name="roomNo"></param>
+             </summary>
+             <param name="patientId"></param>
+             <param name="firstName"></param>
+             <param name="lastName"></param>
+             <param name="dateOfBirth"></param>
+             <param name="gender"></param>
+             <param name="roomNo"></param>
         </member>
         <member name="M:MedicationTracking.Models.PatientDtoWithId.#ctor(System.Int32,System.String,System.String,System.DateTime,System.String,System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="patientId"></param>
-            <param name="firstName"></param>
-            <param name="lastName"></param>
-            <param name="dateOfBirth"></param>
-            <param name="gender"></param>
-            <param name="roomNo"></param>
+             </summary>
+             <param name="patientId"></param>
+             <param name="firstName"></param>
+             <param name="lastName"></param>
+             <param name="dateOfBirth"></param>
+             <param name="gender"></param>
+             <param name="roomNo"></param>
         </member>
         <member name="P:MedicationTracking.Models.PatientDtoWithId.PatientId">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Models.PatientDtoWithId.op_Implicit(Data.Models.Patient)~MedicationTracking.Models.PatientDtoWithId">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="patient"></param>
-            <returns></returns>
+             </summary>
+             <param name="patient"></param>
+             <returns></returns>
         </member>
         <member name="T:MedicationTracking.Models.PatientMedRequestDto">
             <summary>
@@ -1716,9 +1721,9 @@
             </summary>
         </member>
         <member name="T:MedicationTracking.Specifications.AllMedsSpec">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="T:MedicationTracking.Specifications.AllPatientsSpecs">
              <summary>
@@ -1748,26 +1753,26 @@
              <param name="timeCategoryId"></param>
         </member>
         <member name="T:MedicationTracking.Specifications.MedAdminLogByScheduleIdSpec">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Specifications.MedAdminLogByScheduleIdSpec.#ctor(System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="scheduleId"></param>
+             </summary>
+             <param name="scheduleId"></param>
         </member>
         <member name="T:MedicationTracking.Specifications.MedicationEffectByIdSpec">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Specifications.MedicationEffectByIdSpec.#ctor(System.Int32)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="effectId"></param>
+             </summary>
+             <param name="effectId"></param>
         </member>
         <member name="T:MedicationTracking.Specifications.MedScheduleByIdSpec">
              <summary>
@@ -1815,15 +1820,15 @@
              <param name="qrCodeValue"></param>
         </member>
         <member name="T:MedicationTracking.Specifications.SameGenericAndBrandNameSpec">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:MedicationTracking.Specifications.SameGenericAndBrandNameSpec.#ctor(MedicationTracking.Models.MedicineBase)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="medicine"></param>
+             </summary>
+             <param name="medicine"></param>
         </member>
         <member name="T:MedicationTracking.Specifications.TimeCategoryByDescriptionSpec">
              <summary>
@@ -1835,6 +1840,52 @@
             The default constructor requires the direct query
             </summary>
             <param name="description"></param>
+        </member>
+        <member name="T:MedicationTracking.Utility.TimeCategoryService">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:MedicationTracking.Utility.TimeCategoryService._timeCategories">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:MedicationTracking.Utility.TimeCategoryService.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:MedicationTracking.Utility.TimeCategoryService.GetTimeCategory">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:MedicationTracking.Utility.TimeCategoryTracking">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:MedicationTracking.Utility.TimeCategoryTracking.#ctor(System.Int32,System.TimeSpan,System.TimeSpan)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:MedicationTracking.Utility.TimeCategoryTracking.TimeCategoryId">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:MedicationTracking.Utility.TimeCategoryTracking.StartTime">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:MedicationTracking.Utility.TimeCategoryTracking.EndTime">
+             <summary>
+            
+             </summary>
         </member>
     </members>
 </doc>

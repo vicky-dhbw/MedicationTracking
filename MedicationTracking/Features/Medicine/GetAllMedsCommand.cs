@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace MedicationTracking.Features.Medicine;
 
 /// <summary>
-/// 
+///
 /// </summary>
-public class GetAllMedsCommand: IRequest<ActionResult<List<MedicineDtoWithEffects>>>
-{
-}
+public class GetAllMedsCommand : IRequest<ActionResult<List<MedicineDtoWithEffects>>> { }

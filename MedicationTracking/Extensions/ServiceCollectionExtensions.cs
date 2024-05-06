@@ -1,6 +1,7 @@
 using System.Reflection;
 using Data.Database;
 using MedicationTracking.Repository;
+using MedicationTracking.Utility;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicationTracking.Extensions;
@@ -38,6 +39,7 @@ public static class ServiceCollectionExtensions
 
         // Registering the repository
         services.AddScoped<IMedicationTrackingRepository, MedicationTrackingRepository>();
+        services.AddScoped<TimeCategoryService>();
 
         // Swagger xml documentation
         services.AddSwaggerGen(options =>
