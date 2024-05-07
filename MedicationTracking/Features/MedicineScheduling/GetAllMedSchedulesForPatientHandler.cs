@@ -1,5 +1,4 @@
 using MediatR;
-using MedicationTracking.Features.MedAdministrationLog;
 using MedicationTracking.Models;
 using MedicationTracking.Repository;
 using MedicationTracking.Specifications;
@@ -12,10 +11,10 @@ namespace MedicationTracking.Features.MedicineScheduling;
 /// </summary>
 /// <param name="mediator"></param>
 /// <param name="repository"></param>
-public class GetAllMedsForPatientHandler(
+public class GetAllMedSchedulesForPatientHandler(
     IMediator mediator,
     IMedicationTrackingRepository repository
-) : IRequestHandler<GetAllMedsForPatientCommand, ActionResult<MedicineSchedulingMultipleDto>>
+) : IRequestHandler<GetAllMedSchedulesForPatientCommand, ActionResult<AllMedSchedulesDto>>
 {
     /// <summary>
     ///
@@ -23,30 +22,28 @@ public class GetAllMedsForPatientHandler(
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task<ActionResult<MedicineSchedulingMultipleDto>> Handle(
-        GetAllMedsForPatientCommand request,
+    public async Task<ActionResult<AllMedSchedulesDto>> Handle(
+        GetAllMedSchedulesForPatientCommand request,
         CancellationToken cancellationToken
     )
     {
-        var patient = await repository.FirstOrDefault(
-            new PatientByIdSpec(request.PatientId),
+        var qrCode = await repository.FirstOrDefault(
+            new PatientByQrCodeValueSpec(request.QrCode), cancellationToken);
+
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (qrCode == null)
+            return new NotFoundObjectResult(
+                $"No Patient with qrCode value {request.QrCode} exists in the database!"
+            );
+
+        var patient = await repository.FirstOrDefault(new PatientByIdSpec(qrCode.PatientId), cancellationToken);
+
+        var medicineSchedules = await repository.ListAsync(
+            new MedScheduleByPatientIdSpec(qrCode.PatientId),
             cancellationToken
         );
 
-        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-        if (patient == null)
-            return new NotFoundObjectResult(
-                $"No Patient with id {request.PatientId} exists in the database!"
-            );
-
-        var medicineSchedules = (
-            await repository.ListAsync(
-                new MedScheduleByPatientIdSpec(patient.PatientId),
-                cancellationToken
-            )
-        ).Where(schedule => schedule.Start.Date <= DateTime.Today && schedule.End.Date >= DateTime.Today);
-
-        var medInfoScheduleInfos = new List<MedInfoScheduleInfo>();
+        var medInfoScheduleInfos = new List<MedInfoScheduleInfoBase>();
 
         foreach (var medicineSchedule in medicineSchedules)
         {
@@ -55,15 +52,8 @@ public class GetAllMedsForPatientHandler(
                 cancellationToken
             );
 
-            var medAdminLog = (
-                await mediator.Send(
-                    new GetMedAdminLogCommand(medicineSchedule.ScheduleId),
-                    cancellationToken
-                )
-            ).Value;
-
             medInfoScheduleInfos.Add(
-                new MedInfoScheduleInfo
+                new MedInfoScheduleInfoBase
                 {
                     MedicineDto = new MedicineDto(
                         medicine.GenericName,
@@ -79,13 +69,12 @@ public class GetAllMedsForPatientHandler(
                         medicineSchedule.Dosage,
                         medicineSchedule.Start,
                         medicineSchedule.End
-                    ),
-                    MedAdministrationLog = medAdminLog
+                    )
                 }
             );
         }
 
-        return new MedicineSchedulingMultipleDto
+        return new AllMedSchedulesDto
         {
             MedicineSchedules = medInfoScheduleInfos,
             Patient = new PatientBase(

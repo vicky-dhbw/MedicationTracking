@@ -40,8 +40,7 @@ public class GetMedAdminLogHandler(
             new MedAdminLogByScheduleIdSpec(request.ScheduleId),
             cancellationToken
         );
-        
-        
+
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
         if (medAdminLog == null)
@@ -49,16 +48,18 @@ public class GetMedAdminLogHandler(
             // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (timeCategoryService.GetTimeCategory() != null)
             {
-                if (timeCategoryService.GetTimeCategory().TimeCategoryId
+                if (
+                    timeCategoryService.GetTimeCategory().TimeCategoryId
                     > medicationSchedule.TimeCategoryId
-                   )
+                )
                 {
                     return await PersistSkippedLogs(request.ScheduleId, cancellationToken);
                 }
-            
-                if (timeCategoryService.GetTimeCategory().TimeCategoryId
+
+                if (
+                    timeCategoryService.GetTimeCategory().TimeCategoryId
                     <= medicationSchedule.TimeCategoryId
-                   )
+                )
                 {
                     return ReturnPendingMedication(request.ScheduleId);
                 }
@@ -69,7 +70,7 @@ public class GetMedAdminLogHandler(
                 {
                     return await PersistSkippedLogs(request.ScheduleId, cancellationToken);
                 }
-                if (DateTime.Now.Hour >= 14 && DateTime.Now.Hour <17)
+                if (DateTime.Now.Hour >= 14 && DateTime.Now.Hour < 17)
                 {
                     if (medicationSchedule.TimeCategoryId < 4)
                     {
@@ -88,7 +89,7 @@ public class GetMedAdminLogHandler(
                 }
             }
         }
-        
+
         return new MedAdministrationLogBaseWithId(
             medAdminLog!.MedLogId,
             medAdminLog.ScheduleId,
@@ -98,18 +99,16 @@ public class GetMedAdminLogHandler(
         );
     }
 
-    private async Task<MedAdministrationLogBaseWithId> PersistSkippedLogs(int scheduleId, CancellationToken cancellationToken)
+    private async Task<MedAdministrationLogBaseWithId> PersistSkippedLogs(
+        int scheduleId,
+        CancellationToken cancellationToken
+    )
     {
         var newMedAdminLog = await repository.AddAsync(
-            new Data.Models.MedAdministrationLog(
-                scheduleId,
-                DateTime.Now,
-                -1,
-                "skipped"
-            ),
+            new Data.Models.MedAdministrationLog(scheduleId, DateTime.Now, -1, "skipped"),
             cancellationToken
         );
-        
+
         await repository.SaveAsync(cancellationToken);
         return new MedAdministrationLogBaseWithId(
             newMedAdminLog.MedLogId,
@@ -122,13 +121,6 @@ public class GetMedAdminLogHandler(
 
     private MedAdministrationLogBaseWithId ReturnPendingMedication(int scheduleId)
     {
-        return new MedAdministrationLogBaseWithId(
-            0,
-            scheduleId,
-            DateTime.Today,
-            0,
-            "pending"
-        );
+        return new MedAdministrationLogBaseWithId(0, scheduleId, DateTime.Today, 0, "pending");
     }
-    
 }

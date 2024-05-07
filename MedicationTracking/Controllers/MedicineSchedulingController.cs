@@ -65,7 +65,7 @@ public class MedicineSchedulingController(IMediator mediator) : ControllerBase
     /// <param name="medicineScheduleBase"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPut]
     [Route("EditMedSchedule")]
     public async Task<ActionResult<MedicineSchedulingSingelDto>> EditMedScheduleAsync(
         [FromBody] [Required] MedicineScheduleBase medicineScheduleBase,
@@ -85,12 +85,40 @@ public class MedicineSchedulingController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route("AllMedForPatient/{patientId}")]
-    public async Task<ActionResult<MedicineSchedulingMultipleDto>> GetAllMedForPatientAsync(
+    [Route("AllMedsForPatient/{patientId}/Today")]
+    public async Task<ActionResult<MedicineSchedulingMultipleDto>> GetAllMedForPatientForTodayAsync(
         [FromRoute] int patientId,
         CancellationToken cancellationToken
     )
     {
         return await _mediator.Send(new GetAllMedsForPatientCommand(patientId), cancellationToken);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="qRCode"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("AllMedsForPatient/{qRCode}")]
+    public async Task<ActionResult<AllMedSchedulesDto>> GetAllMedSchedulesForPatient(string qRCode,
+        CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetAllMedSchedulesForPatientCommand(qRCode), cancellationToken);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="scheduleId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("{scheduleId}")]
+    public async Task<ActionResult<MedicineSchedulingSingelDto>> GetMedScheduleById(int scheduleId,
+        CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetScheduleByIdCommand(scheduleId), cancellationToken);
     }
 }
