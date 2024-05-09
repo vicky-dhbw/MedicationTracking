@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(
         "_myAllowSpecificOrigins",
         b =>
-            b.WithOrigins("http://localhost:8100") // Replace with the origin of your Angular app
+            b.WithOrigins("http://localhost:8100", "http://10.0.2.16:8100", "http://localhost", "http://10.0.2.16", "http://io.ionic.starter",  "http://io.ionic.starter:8100") // Replace with the origin of your Angular app
                 .AllowAnyHeader()
                 .AllowAnyMethod()
     );
