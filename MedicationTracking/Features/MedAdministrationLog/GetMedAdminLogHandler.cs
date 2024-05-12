@@ -72,7 +72,7 @@ public class GetMedAdminLogHandler(
                 }
                 if (DateTime.Now.Hour >= 14 && DateTime.Now.Hour < 17)
                 {
-                    if (medicationSchedule.TimeCategoryId < 4)
+                    if (medicationSchedule.TimeCategoryId <= 4)
                     {
                         return await PersistSkippedLogs(request.ScheduleId, cancellationToken);
                     }
